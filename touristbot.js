@@ -1,13 +1,14 @@
 const { Telegraf } = require("telegraf");
 const fs = require("fs");
 const ContentBasedRecommender = require("content-based-recommender");
+require("dotenv").config();
 
 const recommender = new ContentBasedRecommender({
   minScore: 0.1,
   maxSimilarDocuments: 100,
 });
 
-const TOKEN = "5863871824:AAFwOrT4TSAob0v-wTQUl41g277lG2KamFQ";
+const TOKEN = process.env.TELEGRAM_API_KEY;
 
 const bot = new Telegraf(TOKEN);
 
