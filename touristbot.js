@@ -1,18 +1,13 @@
 const { Telegraf } = require("telegraf");
 const fs = require("fs");
-const ContentBasedRecommender = require("content-based-recommender");
 require("dotenv").config();
 
-const recommender = new ContentBasedRecommender({
-  minScore: 0.1,
-  maxSimilarDocuments: 100,
-});
+TfIdf = require("tf-idf-search");
+tf_idf = new TfIdf();
 
 const TOKEN = process.env.TELEGRAM_API_KEY;
 
 const bot = new Telegraf(TOKEN);
-
-const axios = require("axios");
 
 const startMessage = `
     Selamat Datang di Bot Wisata Semarang\nSilahkan Pilih Opsi
@@ -26,36 +21,81 @@ bot.start((ctx) => {
           { text: "\uD83D\uDD0D Cari Kategori", callback_data: "categori" },
           { text: `\u2B50 Populer`, callback_data: "populer" },
         ],
-        [{ text: "Contents", callback_data: "content" }],
+        [
+          { text: "\u{1F9ED} Cari Destinasi", callback_data: "content" },
+          // { text: "Input Text", callback_data: "testtext" },
+        ],
+        [{ text: "\u{1F4DA} Semua Destinasi", callback_data: "all-data" }],
       ],
     },
   });
 });
 
+let parseData = JSON.parse(fs.readFileSync("./dataset-wisata-semarang.json", "utf-8"));
+const getData = parseData.map(({ content }) => ({
+  content,
+}));
+
+const finalData = parseData.map(({ title, placeUrl }) => ({
+  title,
+  placeUrl,
+}));
+let documents = getData.map((obj) => obj.content);
+
+bot.command("cari", (ctx) => {
+  let infDestinasi = ctx.message.text;
+  let inputDestinasi = infDestinasi.split(" ");
+  let query = "";
+
+  if (inputDestinasi.length === 1) {
+    ctx.reply("Silahkan masukkan informasi yang ingin dicari!");
+  } else {
+    inputDestinasi.shift();
+    query = inputDestinasi.join(" ");
+
+    function rankDocuments() {
+      let corpus = tf_idf.createCorpusFromStringArray(documents);
+      let search_result = tf_idf.rankDocumentsByQuery(query);
+      return search_result;
+    }
+
+    let recommendation = rankDocuments(documents, query);
+
+    let showSimilarity = recommendation
+      .map(({ index, similarityIndex }) => ({
+        index,
+        similarityIndex,
+      }))
+      .filter((item) => item.similarityIndex >= 0.1);
+
+    let recMsg = `Rekomendasi berdasarkan pencarian Anda:\n`;
+    showSimilarity.forEach((items) => {
+      const data = finalData[items.index];
+
+      if (data) {
+        recMsg += `\u27a2 [${data.title}](${data.placeUrl})\n`;
+        console.log(data.title);
+      } else {
+        console.log(`Invalid Data at index ${items.index}`);
+      }
+    });
+
+    ctx.reply(recMsg, {
+      parse_mode: "Markdown",
+      reply_markup: {
+        inline_keyboard: [[{ text: "Cari lagi", callback_data: "content" }]],
+      },
+    });
+
+    console.log(showSimilarity);
+  }
+});
+
 bot.action("content", (ctx) => {
   ctx.answerCbQuery("Loading...");
 
-  let rawData = fs.readFileSync("./dataset-wisata-semarang.json", "utf-8");
-  let parseData = JSON.parse(rawData);
-
-  const parameterData = parseData.map(
-    ({ id, placeUrl, title, rating, reviewCount, imgUrl, category, content }) => ({
-      id,
-      placeUrl,
-      title,
-      content,
-      rating: rating ?? "Tidak ada rating",
-      reviewCount: reviewCount ?? "Tidak ada review",
-      imgUrl: imgUrl ?? "https://www.contentviewspro.com/wp-content/uploads/2017/07/default_image.png",
-      category: category ?? "Tidak Ada Kategori",
-    })
-  );
-
-  recommender.train(parameterData);
-
-  const similarData = recommender.getSimilarDocuments("10", 0, 10);
-
-  console.log(similarData);
+  let message = `Silahkan cari informasi destinasi wisata Kota Semarang menggunakan perintah /cari <nama_wisata>\nContoh: /cari Masjid Agung Jawa Tengah`;
+  ctx.reply(message);
 });
 
 bot.action("categori", async (ctx) => {
@@ -223,4 +263,97 @@ bot.action("populer", async (ctx) => {
   });
 });
 
+bot.action("all-data", (ctx) => {
+  ctx.answerCbQuery("Merekomendasikan...");
+
+  let rawData = fs.readFileSync("./dataset-wisata-semarang.json", "utf-8");
+  let parseData = JSON.parse(rawData);
+
+  const parameterData = parseData.map(
+    ({ placeUrl, title, rating, reviewCount, imgUrl, category, content }) => ({
+      placeUrl,
+      title,
+      content,
+      rating: rating ?? "Tidak ada rating",
+      reviewCount: reviewCount ?? "Tidak ada review",
+      imgUrl: imgUrl ?? "https://www.contentviewspro.com/wp-content/uploads/2017/07/default_image.png",
+      category: category ?? "Tidak Ada Kategori",
+    })
+  );
+
+  const popularData = parameterData.sort((a, b) => b.reviewCount - a.reviewCount);
+
+  let currIdx = 0;
+
+  const wisata = popularData[currIdx];
+  const photoUrl = wisata.imgUrl;
+  const caption = `*${wisata.title}*\n\u2B50 Ratings: ${wisata.rating}\n\uD83D\uDCCA Reviews: ${wisata.reviewCount}\n\u{1F3F7} Kategori: ${wisata.category}\n\n${wisata.content}`;
+
+  ctx.replyWithPhoto(photoUrl, {
+    caption: caption,
+    reply_markup: {
+      inline_keyboard: [
+        [
+          { text: `\u23ED Selanjutnya`, callback_data: "nextData" },
+          { text: `\ud83c\udf10 Google Maps`, url: `${wisata.placeUrl}` },
+        ],
+      ],
+    },
+    parse_mode: "Markdown",
+  });
+
+  bot.action("nextData", (ctx) => {
+    currIdx++;
+    if (currIdx >= parameterData.length) {
+      currIdx = 0;
+    }
+
+    const wisata = parameterData[currIdx];
+    const photoUrl = wisata.imgUrl;
+    const caption = `*${wisata.title}*\n\u2B50 Ratings: ${wisata.rating}\n\uD83D\uDCCA Reviews: ${wisata.reviewCount}\n\u{1F3F7} Kategori: ${wisata.category}\n\n${wisata.content}`;
+
+    ctx.editMessageMedia(
+      { type: "photo", media: photoUrl, caption: caption, parse_mode: "Markdown" },
+      {
+        reply_markup: {
+          inline_keyboard: [
+            [
+              { text: `\u23ED Selanjutnya`, callback_data: "nextData" },
+              { text: `\ud83c\udf10 Google Maps`, url: `${wisata.placeUrl}` },
+            ],
+          ],
+        },
+      }
+    );
+  });
+});
+
 bot.launch();
+
+bot.action("testtext", (ctx) => {
+  ctx.answerCbQuery("Loading...");
+  let startMsg = `Input text using /input <text>`;
+  ctx.reply(startMsg);
+
+  bot.command("input", (ctx) => {
+    let message = ctx.message.text;
+    let inputMessage = message.split(" ");
+    let messageAnswer = "";
+
+    if (inputMessage.length === 1) {
+      messageAnswer = "Plese input the text";
+      ctx.reply(messageAnswer);
+    } else {
+      inputMessage.shift();
+      messageAnswer = inputMessage.join(" ");
+    }
+
+    let answer = `You said ${messageAnswer}`;
+
+    ctx.reply(answer, {
+      reply_markup: {
+        inline_keyboard: [[{ text: "Input Again", callback_data: "testtext" }]],
+      },
+    });
+  });
+});

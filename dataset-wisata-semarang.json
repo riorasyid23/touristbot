@@ -1,6 +1,6 @@
 [
     {
-        "id": "1",
+        "id": "1000001",
         "placeUrl": "https://goo.gl/maps/RaX5uwsGVa6sPSRHA",
         "title": "MASJID AGUNG JAWA TENGAH (MAJT)",
         "rating": "4.5",
@@ -10,7 +10,7 @@
         "category": "Religi"
     },
     {
-        "id": "2",
+        "id": "1000002",
         "placeUrl": "https://goo.gl/maps/2DUnpP9NW3bhHnY28",
         "title": "MASJID BESAR KAUMAN",
         "rating": "4.8",
@@ -20,7 +20,7 @@
         "category": "Religi"
     },
     {
-        "id": "3",
+        "id": "1000003",
         "placeUrl": "https://goo.gl/maps/eFYt9gFvYMbDimwcA",
         "title": "KLENTENG SAM POO KONG",
         "rating": "4.5",
@@ -30,7 +30,7 @@
         "category": "Religi"
     },
     {
-        "id": "4",
+        "id": "1000004",
         "placeUrl": "https://goo.gl/maps/WiEG8SkNBs62aNeT9",
         "title": "MUSEUM RANGGAWARSITA",
         "rating": "4.4",
@@ -40,7 +40,7 @@
         "category": "Budaya"
     },
     {
-        "id": "5",
+        "id": "1000005",
         "placeUrl": "https://goo.gl/maps/m1qYbcKbtiFXxQXU8",
         "title": "LUMINA GRAND MAERAKACA",
         "rating": "4.6",
@@ -50,7 +50,7 @@
         "category": "Buatan"
     },
     {
-        "id": "6",
+        "id": "1000006",
         "placeUrl": "https://goo.gl/maps/nw7CeGCK7zutxph18",
         "title": "GEREJA BLENDUK",
         "rating": "4.6",
@@ -60,7 +60,7 @@
         "category": "Religi"
     },
     {
-        "id": "7",
+        "id": "1000007",
         "placeUrl": "https://goo.gl/maps/EAmwdqFHRUvkjKZ56",
         "title": "DESA WISATA WONOLOPO",
         "rating": "4.3",
@@ -70,7 +70,7 @@
         "category": "Minat Khusus"
     },
     {
-        "id": "8",
+        "id": "1000008",
         "placeUrl": "https://goo.gl/maps/BJyGH4inJD8AZDcRA",
         "title": "DESA WISATA KANDRI",
         "rating": "4.4",
@@ -80,7 +80,7 @@
         "category": "Minat Khusus"
     },
     {
-        "id": "9",
+        "id": "1000009",
         "placeUrl": "https://goo.gl/maps/4BA5FRYyyJ8SmLSF8",
         "title": "MAKAM HABIB HASAN BIN THOHA",
         "rating": "4.8",
@@ -90,7 +90,7 @@
         "category": "Religi"
     },
     {
-        "id": "10",
+        "id": "1000010",
         "placeUrl": "https://goo.gl/maps/vNuEXrfcZShcSQTt7",
         "title": "PURA GIRI NATHA",
         "rating": "4.8",
@@ -100,7 +100,7 @@
         "category": "Religi"
     },
     {
-        "id": "11",
+        "id": "1000011",
         "placeUrl": "https://goo.gl/maps/RQ5Jt6RaUq5eHaSQ8",
         "title": "KLENTENG TAY KAK SIE",
         "rating": "4.7",
@@ -110,7 +110,7 @@
         "category": "Religi"
     },
     {
-        "id": "12",
+        "id": "1000012",
         "placeUrl": "https://goo.gl/maps/rboRKa4JnjHv9zei9",
         "title": "MUSEUM KOTA LAMA SEMARANG",
         "rating": "4.6",
@@ -120,7 +120,7 @@
         "category": "Budaya"
     },
     {
-        "id": "13",
+        "id": "1000013",
         "placeUrl": "https://goo.gl/maps/Qw6fcBRDpjFkDfKq9",
         "title": "PANTAI MARINA",
         "rating": "4.2",
@@ -130,7 +130,7 @@
         "category": "Alam"
     },
     {
-        "id": "14",
+        "id": "1000014",
         "placeUrl": "https://goo.gl/maps/b27K1Ew1vLReEqVZ8",
         "title": "TAMAN LELE",
         "rating": "4.2",
@@ -140,7 +140,7 @@
         "category": "Buatan"
     },
     {
-        "id": "15",
+        "id": "1000015",
         "placeUrl": "https://goo.gl/maps/GNpfQcx6Airu1ahE8",
         "title": "KOTA LAMA SEMARANG",
         "rating": "4.3",
@@ -150,7 +150,7 @@
         "category": "Budaya"
     },
     {
-        "id": "16",
+        "id": "1000016",
         "placeUrl": "https://goo.gl/maps/dA3nvs8yfk8tZbVC8",
         "title": "GRAND MAEROKOCO",
         "rating": "4.4",
@@ -160,7 +160,7 @@
         "category": "Religi"
     },
     {
-        "id": "17",
+        "id": "1000017",
         "placeUrl": "https://goo.gl/maps/QqpRBrquddSLy2MA8",
         "title": "TUGU MUDA",
         "rating": "4.7",
@@ -170,7 +170,7 @@
         "category": "Budaya"
     },
     {
-        "id": "18",
+        "id": "1000018",
         "placeUrl": "https://goo.gl/maps/LCLz1VRPnsfGaFnH6",
         "title": "HUTAN WISATA TINJOMOYO",
         "rating": "4.3",
@@ -180,7 +180,7 @@
         "category": "Alam"
     },
     {
-        "id": "19",
+        "id": "1000019",
         "placeUrl": "https://goo.gl/maps/HFCJuo93UVyT7Jrb7",
         "title": "STASIUN KERETA API SEMARANG TAWANG",
         "rating": "4.5",
@@ -190,7 +190,7 @@
         "category": "Budaya"
     },
     {
-        "id": "20",
+        "id": "1000020",
         "placeUrl": "https://goo.gl/maps/UfbQaSnh8fWgcbsp9",
         "title": "SEMARANG ZOO",
         "rating": "3.9",
@@ -200,7 +200,7 @@
         "category": "Buatan"
     },
     {
-        "id": "21",
+        "id": "1000021",
         "placeUrl": "https://goo.gl/maps/LYxiokQHk9TcuyqL6",
         "title": "MANGROVE MAEROKOCO",
         "rating": "4.4",
@@ -210,7 +210,7 @@
         "category": "Alam"
     },
     {
-        "id": "22",
+        "id": "1000022",
         "placeUrl": "https://goo.gl/maps/QP56dUom1c7XQGuh8",
         "title": "MUSEUM MANDALA BHAKTI",
         "rating": "4.7",
@@ -220,7 +220,7 @@
         "category": "Budaya"
     },
     {
-        "id": "23",
+        "id": "1000023",
         "placeUrl": "https://goo.gl/maps/oFnqri8XFktRnpN49",
         "title": "MUSEUM REKOR INDONESIA (MURI)",
         "rating": "4.5",
@@ -230,7 +230,7 @@
         "category": "Budaya"
     },
     {
-        "id": "24",
+        "id": "1000024",
         "placeUrl": "https://goo.gl/maps/8xKwY1mrNc8yBKTL6",
         "title": "PAGODA AVALOKITESVARA",
         "rating": "4.7",
@@ -240,7 +240,7 @@
         "category": "Religi"
     },
     {
-        "id": "25",
+        "id": "1000025",
         "placeUrl": "https://goo.gl/maps/6CqLrS8fr1eVACuT9",
         "title": "WADUK JATIBARANG",
         "rating": "4.3",
@@ -250,7 +250,7 @@
         "category": "Alam"
     },
     {
-        "id": "26",
+        "id": "1000026",
         "placeUrl": "https://goo.gl/maps/cPUZ7f9fzriiGWpH7",
         "title": "GOMBEL GOLF SEMARANG",
         "rating": "4.4",
@@ -260,7 +260,7 @@
         "category": "Minat Khusus"
     },
     {
-        "id": "27",
+        "id": "1000027",
         "placeUrl": "https://goo.gl/maps/B34ziwb52Lng4fRq6",
         "title": "TAMAN BUDAYA RADEN SALEH",
         "rating": "4.4",
@@ -270,7 +270,7 @@
         "category": "Budaya"
     },
     {
-        "id": "28",
+        "id": "1000028",
         "placeUrl": "https://goo.gl/maps/ouhTbjXL6juPdAKg8",
         "title": "GOA KREO",
         "rating": "4.3",
@@ -280,7 +280,7 @@
         "category": "Alam"
     },
     {
-        "id": "29",
+        "id": "1000029",
         "placeUrl": "https://goo.gl/maps/J2gwRgigNssJ3iTg6",
         "title": "KAWASAN SIMPANG LIMA",
         "rating": "4.7",
@@ -290,7 +290,7 @@
         "category": "Buatan"
     },
     {
-        "id": "30",
+        "id": "1000030",
         "placeUrl": "https://goo.gl/maps/GkLM8HKP8jnt8z82A",
         "title": "LAWANG SEWU",
         "rating": "4.6",
